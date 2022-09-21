@@ -38,14 +38,14 @@
 	</issueManagement>
 	<distributionManagement>
 		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<id>releases</id>
+			<name>Internal releases repository</name>
+			<url> artifactregistry://europe-north1-maven.pkg.dev/fraggle-rock-artifacts/issuite-releases</url>
 		</repository>
 		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+			<id>snapshots</id>
+			<name>Internal snapshots repository</name>
+			<url> artifactregistry://europe-north1-maven.pkg.dev/fraggle-rock-artifacts/issuite-snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<repositories>
@@ -58,7 +58,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<metrics.version>4.0.2</metrics.version>
+		<metrics.version>4.2.12</metrics.version>
 		<rabbitmq.version>3.5.1</rabbitmq.version>
 		<librato.version>4.0.1.9</librato.version>
 		<new-relic.version>1.1.1</new-relic.version>
@@ -71,7 +71,7 @@
 		<junit.version>4.12</junit.version>
 		<mockito.version>1.9.5</mockito.version>
 		<servlet.version>3.1.0</servlet.version>
-		<jackson.version>2.4.2</jackson.version>
+		<jackson.version>2.12.7</jackson.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -338,12 +338,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-jmx</artifactId>
-            <version>4.0.2</version>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-jmx</artifactId>
+			<version>4.2.12</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -379,8 +379,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -406,7 +406,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.14.1</version>
+				<version>2.22.2</version>
 				<configuration>
 					<includes>
 						<include>**/TestSuite.class</include>
@@ -416,7 +416,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2.1</version>
+				<version>3.2.1</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -429,7 +429,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9</version>
+				<version>3.3.0</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -483,7 +483,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>3.0.1</version>
+				<version>3.0.5</version>
 				<executions>
 					<execution>
 						<goals>
@@ -616,6 +616,13 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<extensions>
+			<extension>
+				<groupId>com.google.cloud.artifactregistry</groupId>
+				<artifactId>artifactregistry-maven-wagon</artifactId>
+				<version>2.1.0</version>
+			</extension>
+		</extensions>
 	</build>
 	<profiles>
 		<profile>

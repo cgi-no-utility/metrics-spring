@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Configuration of Metrics reporter using ES.
  *
- * @author <a href="mailto:david@davidkarlsen.com>David J. M. Karlsen</a>
+ * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen</a>
  * @since 3.1.3
  */
 public class ElasticSearchReporterFactoryBean
